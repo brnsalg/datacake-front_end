@@ -1,0 +1,20 @@
+<div class="form-group row">
+    <div class="col-sm-1o">
+        <input type="text" class="form-control" [(ngModel)]="TodoTitle" placeholder="Enter Todo Title">
+    </div>
+    <div class="col-sm-1o">
+        <input type="text" class="form-control" [(ngModel)]="TodoDescription" placeholder="Enter Todo Description">
+    </div>
+    <div class="col-sm-1o">
+        <label>Mark if it was done:</label>
+        &nbsp;
+        <input type="checkbox" [(ngModel)]="TodoStatus">
+    </div>
+    <div class="col-sm-1o">
+        <input type="text" class="form-control" [(ngModel)]="TodoStatus" readonly style="display: none;">
+    </div>
+</div>
+
+<button (click)="addTodo()" *ngIf="todo.TodoId == 0" class="btn btn-primary">Add</button>
+
+<button (click)="updateTodo()" *ngIf="todo.TodoId != 0" class="btn btn-primary">Update</button>

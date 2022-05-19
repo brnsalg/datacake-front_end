@@ -1,0 +1,62 @@
+<div>
+    <nav class="navbar navbar-center navbar-expand-sm bg-light navbar-dark justify-content-center">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        (click)="addClick()"
+        data-backdrop="static" data-keyboard="false">
+        Add Todo
+        </button>    
+    </nav>
+    
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{ ModalTitle }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)="closeClick()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <app-add-edit-todo [todo]="todo" *ngIf="ActivateAddEditTodo"></app-add-edit-todo>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>TodoID</th>
+            <th>TodoTitle</th>
+            <th>TodoDescription</th>
+            <th>TodoStatus</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let todo of TodoList">
+            <td>{{ todo.TodoId }}</td>
+            <td>{{ todo.TodoTitle }}</td>
+            <td>{{ todo.TodoDescription }}</td>
+            <td style="display: none;">{{ todo.TodoStatus }}</td>
+            <td *ngIf="todo.TodoStatus == 1" style="background-color: green;">Concluded</td>
+            <td *ngIf="todo.TodoStatus != 1" style="background-color: red;">Not completed</td>
+            <td>
+                <button type="button" class="btn btn-light mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                (click)="editClick(todo)"
+                data-backdrop="static" data-keyboard="false">
+                Edit</button>
+                <button type="button" class="btn btn-light mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                (click)="deleteClick(todo)"
+                data-backdrop="static" data-keyboard="false">
+                Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
